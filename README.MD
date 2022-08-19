@@ -2,9 +2,9 @@
 
 # About
 
-Implements the ILogger interface with Windows Forms controls in .NET Core.
-
-Dependency Inversion/Injection is a great way to improve the application operations in terms of testing, maintenance and reusability.
+Implements the ILogger interface with Windows Forms controls in .NET Core. The Library is a great example to show the use of DI in Windows Forms projects!
+Dependency Inversion/Injection (DI) is a great way to improve the application operations in terms of testing, maintenance and reusability.
+** MORE EXAMPLES/DOCUMENTATION TO FOLLOW - STAY TUNED! **
 
 # How to use
 
@@ -21,7 +21,7 @@ public interface ILogForm
 }
 ```
 
-Let's assume that we have a `Form` called `frmLog`, which implements this interface. We assume, that a `RichTextBox` (or a `TextBox`) are typical controls that can show logger messages:
+Let's assume that we have a `Form` called `frmLog`, which implements this interface. We assume, that a `RichTextBox` (or a `TextBox`) are typical controls that can show logger messages. Note that because Dependency Injection is supported, we include an `IConfiguration` argument in the constructor, which can be used to retrieve settings from a local `appsettings.json` file.
 
 ```cs
 namespace UcareWin;
@@ -36,8 +36,11 @@ public partial class frmLog : Form, ILogForm
         _configuration = configuration;
     }
 
+    //--------------------------------------------------------
     //implemented function for the ILogForm
-    public Control LogControl => richTextBoxLog// txtLog;
+    //this is the only thing that we need to do within the form!
+    public Control LogControl => richTextBoxLog // or txtLog;
+    //--------------------------------------------------------
 
     private void frmLog_FormClosing(object sender, FormClosingEventArgs e)
     {
@@ -54,8 +57,75 @@ public partial class frmLog : Form, ILogForm
         richTextBoxLog.Clear();
     }
 }
+```
+
+We still need to configure the host services, in order to register the ILogForm. We need to change the `Main` entry function, in order to enable Dependency Injection as shown below:
+
+```cs
+//be sure that you have installed the Dependency Injection Nuget packages
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace UcareWin;
+
+internal static class Program
+{
+
+    static IHost? host;
+
+    public static IServiceProvider Provider => host.Services;
+
+    /// <summary>
+    ///  The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main()
+    {
+        // To customize application configuration such as set high DPI settings or default font,
+        // see https://aka.ms/applicationconfiguration.
+        ApplicationConfiguration.Initialize();
+
+        var builder = Host
+           .CreateDefaultBuilder()
+           .ConfigureServices((context, services) =>
+           {
+               services
+                   .AddSingleton<frmMain>() //this is the main form, which we assume that is called frmMain
+                   .AddLogForm<frmLog>()
+                   ;
+
+           })
+            //we can configure TextBox or RichTextBox logging by using one the following calls.
+            //the non-commented code is used in our case
+            //.ConfigureTextBoxLogging()
+            .ConfigureRichTextBoxLogging()
+         ;
+
+        host = builder.Build();
+
+        var form = host.Services.GetService<frmMain>();
+        Application.Run(form);
+    }
+}
 
 ```
+
+Within the main form (`frmMain`), a sample code to store/show the `logForm` instance is shown below:
+
+```cs
+ILogForm logForm;
+protected override void OnLoad(EventArgs e)
+{
+    base.OnLoad(e);
+
+    InitializeControls();
+    logForm = Program.Provider.GetRequiredService<ILogForm>();
+    logForm.Show();
+}
+```
+
+That's it! Any logging message in our classes is shown in the registered `RichTextBox`/`TextBox` of our choice!
+
 
 The `frmLog` example, assumes that a `RichTextBox` named `richTextBoxLog` is used. For completeness, the `frmLog.Designer.cs` code is given below:
 
