@@ -1,0 +1,12 @@
+C:\repos2\ucare\TextBoxLoggerLibrary\bin\Release\net6.0-windows\TextBoxLoggerLibrary.deps.json
+C:\repos2\ucare\TextBoxLoggerLibrary\bin\Release\net6.0-windows\TextBoxLoggerLibrary.dll
+C:\repos2\ucare\TextBoxLoggerLibrary\bin\Release\net6.0-windows\TextBoxLoggerLibrary.pdb
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.csproj.AssemblyReference.cache
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.AssemblyInfoInputs.cache
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.AssemblyInfo.cs
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.csproj.CoreCompileInputs.cache
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.dll
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\refint\TextBoxLoggerLibrary.dll
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\TextBoxLoggerLibrary.pdb
+C:\repos2\ucare\TextBoxLoggerLibrary\obj\Release\net6.0-windows\ref\TextBoxLoggerLibrary.dll
