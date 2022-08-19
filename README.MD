@@ -65,6 +65,9 @@ public partial class frmLog : Form, ILogForm
 We still need to configure the host services, in order to register the ILogForm. We need to change the `Main` entry function, in order to enable Dependency Injection as shown below:
 
 ```cs
+//declare the library here to facilitate calls
+global using TextBoxLoggerLibrary;
+
 //be sure that you have installed the Dependency Injection Nuget packages
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
