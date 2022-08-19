@@ -4,6 +4,7 @@
 
 Implements the ILogger interface with Windows Forms controls in .NET Core. The Library is a great example to show the use of DI in Windows Forms projects!
 Dependency Inversion/Injection (DI) is a great way to improve the application operations in terms of testing, maintenance and reusability.
+
 ** MORE EXAMPLES/DOCUMENTATION TO FOLLOW - STAY TUNED! **
 
 # How to use
