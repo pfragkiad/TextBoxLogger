@@ -27,7 +27,7 @@ public interface ILogForm
 Let's assume that we have a `Form` called `frmLog`, which implements this interface. We assume, that a `RichTextBox` (or a `TextBox`) are typical controls that can show logger messages. Note that because Dependency Injection is supported, we include an `IConfiguration` argument in the constructor, which can be used to retrieve settings from a local `appsettings.json` file.
 
 ```cs
-namespace UcareWin;
+namespace SampleWin;
 
 public partial class frmLog : Form, ILogForm
 {
@@ -72,7 +72,7 @@ global using TextBoxLoggerLibrary;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace UcareWin;
+namespace SampleWin;
 
 internal static class Program
 {
@@ -136,7 +136,7 @@ That's it! Any logging message in our classes is shown in the registered `RichTe
 The `frmLog` example, assumes that a `RichTextBox` named `richTextBoxLog` is used. For completeness, the `frmLog.Designer.cs` code is given below:
 
 ```cs
-namespace UcareWin
+namespace SampleWin;
 {
     partial class frmLog
     {
